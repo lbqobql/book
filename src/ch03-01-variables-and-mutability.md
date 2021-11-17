@@ -1,3 +1,11 @@
+ # ธรรมเนียมปฎิบัติ 
+ ชื่อตัวแปลใน rust จะใช้รูปแบบ Snake case ใช้ตัวเล็ก คั้นคำด้วยอันเดอรสกอ _ ถ้าเป็ฯค่าคงที่ให้ใช้ตัวใหญ่ 
+ ```rust
+let abc_def : u16 = 8;
+const ABC_DEF : u16 = 8;
+```
+ 
+
 ## Variables and Mutability
 
 As mentioned in the [“Storing Values with
@@ -16,6 +24,7 @@ Then, in your new *variables* directory, open *src/main.rs* and replace its
 code with the following code. This code won’t compile just yet, we'll first
 examine the immutability error.
 
+โดยพื้นฐานแล้ว เมื่อสร้างตัวแปลขึ้นมา มันจะเปลี่ยนค่าม่ได้
 <span class="filename">Filename: src/main.rs</span>
 
 ```rust,ignore,does_not_compile
@@ -25,6 +34,7 @@ examine the immutability error.
 Save and run the program using `cargo run`. You should receive an error
 message, as shown in this output:
 
+คอมไพล์ของรัท ค่อนข้างละเอียดเพื่อป้องกัน bug ที่จะเกิดขึ้น ควรจะหัดอ่าน err ที่คอมไพล์บอก จะช่วยทำความเข้าใจได้มาก
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-01-variables-are-immutable/output.txt}}
 ```
@@ -55,6 +65,8 @@ them mutable by adding `mut` in front of the variable name. Adding `mut` also
 conveys intent to future readers of the code by indicating that other parts of
 the code will be changing this variable’s value.
 
+หากต้องการตัวแปลที่เปลี่ยนค่าได้ ให้ใช้ `mut` หลัง let
+
 For example, let’s change *src/main.rs* to the following:
 
 <span class="filename">Filename: src/main.rs</span>
@@ -78,6 +90,10 @@ instances and writing in a more functional programming style may be easier to
 think through, so lower performance might be a worthwhile penalty for gaining
 that clarity.
 
+ในโปรเจคขนาดใหญ่ การใช้ตัวแปล `mut` จะทำได้เร็วกว่า
+
+แต่ในในโปรเจคแล็กๆ แนะนำให้ให้สร้างตัวแปลแยกกัน ถึงแม้จะทำงานช้าลงบ้างแต่ก็จะให้ความชัดเจนมากขึ้น
+
 ### Constants
 
 Like immutable variables, *constants* are values that are bound to a name and
@@ -99,6 +115,8 @@ not the result of a value that could only be computed at runtime.
 
 Here’s an example of a constant declaration:
 
+ค่าคงที่ เปลี่ยนแปลงไม่ได้ จะมีชนิดข้อมูลเป็นอะไรก็ได้ มีผลครอบคลุมทั้งโปรแกรม มีประโยชน์หลายอย่าง เช่นการตั้งชื่อที่ผู้พัฒนาเข้าใจได้ง่าย
+มีรูปแบบคือ `const ชื่อตัวแปล : ชนิด  = ค่าที่ต้องการกำหนด `
 ```rust
 const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
 ```
@@ -134,6 +152,15 @@ first variable is *shadowed* by the second, which means that the second
 variable’s value is what the program sees when the variable is used. We can
 shadow a variable by using the same variable’s name and repeating the use of
 the `let` keyword as follows:
+
+ตัวแปลเงา เป็นการประกาศชื่อตัวแปลซ้ำกับที่มีอยู่ เพื่อลดการตังชื่อตัวแปลที่ค่อนข้างยากซ้ำซ้อน จะทำให้แก้ค่าตัวแปลนั้นได้
+
+ดูตามตัวอย่าง โปรแกรมจะเริ่มกำหนดค่าจาก ขวา ไป ซ้าย และยังสามารถใช้ `{}  `เพื่อกำหนดขอบเขตอายุตัวแปลไได้ด้วย
+
+ตัวแปลเงา ต่างกับ ตัวแปล `mut` คือ ตัวแปลเงาแก้ประเภทของตัวแปลไม่ได้ เช่น
+ถ้ากำหนดตัวแปลเงาให้เป็น  u8 ตัวแปลเงาก็จะมีค่าได้ในช่วงของ u8 เท่านั้น แต่ `mut` เปลี้ยนได้ทั้งค่าแปละชนิด
+
+
 
 <span class="filename">Filename: src/main.rs</span>
 
