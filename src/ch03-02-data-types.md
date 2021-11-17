@@ -1,5 +1,40 @@
 ## Data Types
 
+# ชนิดตัวแปล
+เหมือนกับในภาษาอื่นๆ และมีรูปแบบการโอเวอโฟลเช่น ถ้าค่าสูงสุดที่ตัวแปลรับได้คือ 255 และเรากำหนดให้มันเปลี่ยนเป็น 257 ค่าที่ตัวแปลจะได้นั้นคือ 1 เพราะ ตั้งแต่ค่าที่เกิน 255 มาจะเริ่มนับที่ 0 ใหม่ 
+
+bool 
+
+i จำนวนเต็ม - + i32 เป็นค่าเริ่มต้น
+
+u จำนวนเต็ม + 
+
+f ทศนิยม f64 เป็นค่าเริ่มต้น (ด้วยสถาปัตยกรรม cpu รุ่นใหม่ ทำให้ f64 ใช้ทรัพยากรณ์เท่ากับ f32
+
+0xff ฐาน 6
+
+0o77  ฐาน 8
+
+0b1111_0000  ฐาน 2
+
+98_222 การกำหนดตัวเลขสามารถใช้ อันเดอสกอ_  คั่นได้ เพื่อให้ผู้พัฒนาอ่านตัวเลขได้ง่าย เช่น 98_222 = 98222
+
+57u8 แบบนี้ หมายถึง ค่า 57 ประเภท u8
+
+Byte (u8 only)	b'A'
+    - The Tuple Type คล้ายกับ array แต่ใช้ได้หลาย type และ type  ซ้ำกันไม่ได้
+        let tup: (i32, f64, u8) = (500, 6.4, 1); สามารถใช้การเข้าถึงแบบ ลำดับ tup.0 tup.1 tup.2 
+        let tup = (1, true ,false)
+        let (x , y, z ) = tup // x=1 y= true z = false
+    - array  เป็นแบบคงที่ และชนิดเดียวกัน let a: [type; size] = [1, 2, 3, 4, 5]; let a = [3; 5]; , เวลาอ้างถึงจะใช้ pointer sized integers
+    - struct name { name : value} , Struct name ( i32, i8, u8 )
+    - enum 
+        name {type},  // let a = name::type
+        name {type( i8, i32), type(enum)},  // let a = name::type
+    - overflow จะวนเลขตามลำดับ ต่ำไปสูง ถ้าต้องการแปลงขนาด i u bool ใช้ as let n = u8 as u16 + 1234
+    - slices กลุ่มข้อความที่รู้ขนาด let s = String::from("hello world");
+    - cha ใช้ ' ', str ใช้ " ", str slices ใช้การอ้างอิงแบบ Index str[0..]
+
 Every value in Rust is of a certain *data type*, which tells Rust what kind of
 data is being specified so it knows how to work with that data. We’ll look at
 two data type subsets: scalar and compound.
