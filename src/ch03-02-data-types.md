@@ -40,7 +40,7 @@ integers, floating-point numbers, Booleans, and characters. You may recognize
 these from other programming languages. Let’s jump into how they work in Rust.
 
 ### Scalar Types
-ตัวแปลค่าเดียว(ประมาณว่าไม่ใช้แบบ ประมาณว่าไม่ใช้แบบ array) มี  จำนวนเต็ม ตัวเลขทศนิยม บูลีน และอักขระ 
+ตัวแปลค่าเดียว(ประมาณว่าไม่ใช้แบบ array) มี  จำนวนเต็ม ตัวเลขทศนิยม บูลีน และอักขระ 
 #### Integer Types
 
 An *integer* is a number without a fractional component. We used one integer
