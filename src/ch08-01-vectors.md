@@ -6,11 +6,17 @@ puts all the values next to each other in memory. Vectors can only store values
 of the same type. They are useful when you have a list of items, such as the
 lines of text in a file or the prices of items in a shopping cart.
 
+`Vec<T>` เก็บข้อมูลเรียงเป็นลำดับในแรม มันเก็บค่าได้แค่ประเภทเดียว แต่มันปรับเปลี่ยนขนาดได้
+
+สังเกตว่าเวคเตอร์มีรูปแบบการใช้  `Vec<T>` นี่เรียกว่า ตัวแปล generics ซึ่งจะกล่าวในบทอื่น ตัวแปลชนิดนี้คือตัวแปลที่จะกำหนดค่าเป็นอะไรก็ได้ รวมถึงค่าที่กำหนดขึ้นมาเองอีกด้วย
+
+
 ### Creating a New Vector
 
 To create a new, empty vector, we can call the `Vec::new` function, as shown in
 Listing 8-1.
 
+ตัวอย่างการสร้าง เวคเตอร์ ชื่อ v ประเภท i32 และมีค่าว่าง
 ```rust
 {{#rustdoc_include ../listings/ch08-common-collections/listing-08-01/src/main.rs:here}}
 ```
@@ -47,6 +53,9 @@ Because we’ve given initial `i32` values, Rust can infer that the type of `v`
 is `Vec<i32>`, and the type annotation isn’t necessary. Next, we’ll look at how
 to modify a vector.
 
+เพื่อความรวดเร็วในขั้นตอนพัฒนาจะใช้ `มาโคร` สังเกตที่เครื่องหมาย `!`  ตามตัวอย่างข้างต้นเราได้เรียกใช้มาโครการสร้าง 
+`let v: Vec<i32> = Vec::new();` แต่ถูกย่อให้เหลือเพียง `let v = vec![1, 2, 3];` และเรายังกำหนดค่า 1 2 3 ลงไปให้มันอีกด้วย ส่วนประเภทของตัวแปล คอมไพล์จะอนุมาณว่าเป็น i32 ซึ่งเป็นค่าเริ่มต้นของจำนวนเต็ม
+
 ### Updating a Vector
 
 To create a vector and then add elements to it, we can use the `push` method,
@@ -63,6 +72,9 @@ As with any variable, if we want to be able to change its value, we need to
 make it mutable using the `mut` keyword, as discussed in Chapter 3. The numbers
 we place inside are all of type `i32`, and Rust infers this from the data, so
 we don’t need the `Vec<i32>` annotation.
+
+ใช้ `push(ค่าที่ต้องการเพิ่ม)`  ในการเพิ่มค่าให้ เวคเตอร์ ตรงนี้จะเห็นว่าต้องใช้  `mut ` เพราะเรากำหนดให้ตัวแปลนี้เปลี่ยนค่าได้
+
 
 ### Dropping a Vector Drops Its Elements
 
@@ -81,6 +93,7 @@ those integers it holds will be cleaned up. This may seem like a
 straightforward point but can get a bit more complicated when you start to
 introduce references to the elements of the vector. Let’s tackle that next!
 
+อายุของตัวแปลเวคเตอร์เหมือนกับตัวแปลทั่วไป คืออยู่ใน {} นั้นๆ
 ### Reading Elements of Vectors
 
 Now that you know how to create, update, and destroy vectors, knowing how to
