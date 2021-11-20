@@ -7,6 +7,9 @@ multiple library crates. In this situation, Cargo offers a feature called
 *workspaces* that can help manage multiple related packages that are developed
 in tandem.
 
+เมื่อโปรเจคใหญ่ขึ้น เป็นเรื่องยุ่งยากที่ต้องจัดการแพคเกจที่มีหลายตัว ซึ่งคุณสามารถใช้ *workspaces* เข้ามาช่วยจัดการได้
+
+
 ### Creating a Workspace
 
 A *workspace* is a set of packages that share the same *Cargo.lock* and output
@@ -18,6 +21,12 @@ the main functionality, will depend on the two libraries. One library will
 provide an `add_one` function, and a second library an `add_two` function.
 These three crates will be part of the same workspace. We’ll start by creating
 a new directory for the workspace:
+
+ในพื้นที่ *workspace* ที่มีหลายโปรเจคย่อยจะใช้  *Cargo.lock* ร่วมกันทั้งหมด 
+
+เราจะสร้าง *workspace* ให้เก็บ 1โปรแกรม แต่ใช้ไลบรารี่ 2 ตัว 
+
+สร้างแฟ้ม `add `เพื่อเก็บโปรแกรมที่จะสร้าง
 
 ```console
 $ mkdir add
@@ -31,6 +40,7 @@ with a `[workspace]` section that will allow us to add members to the workspace
 by specifying the path to the package with our binary crate; in this case,
 that path is *adder*:
 
+หลังจากสร้างแฟ้มแล้ว เราจะสร้างไฟล์ ` Cargo.toml` เพื่อเก็บแพคเกจต่างๆที่ต้องใช้ แต่ในไฟล์นี้จะเป็นการระบุให้ `cargo` รู้ว่าให้ใช้แพคเกจที่ตัว *workspace* หลัก
 <span class="filename">Filename: Cargo.toml</span>
 
 ```toml
